@@ -28,9 +28,10 @@ This workshop focuses on the declarative approach using Azure ARM templates to d
 
 ## Challenges
 
-* [Challeng_00](./challenges/challenge_00.md) Setup your system
-* [Challeng_01](./challenges/challenge_01.md) Import the workshop repository into your personal GitHub organization
-* [Challeng_02](./challenges/challenge_02.md) Git basics
+* [Challenge_00](./challenges/challenge_00.md) Setup your system
+* [Challenge_01](./challenges/challenge_01.md) Import the workshop repository into your personal GitHub organization
+* [Challenge_02](./challenges/challenge_02.md) Git basics
+* [Challenge_03](./challenges/challenge_03.md) Create and deploy your first ARM template
 
 
 
