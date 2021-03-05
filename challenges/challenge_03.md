@@ -91,4 +91,16 @@ Resource changes: 1 to create.
 Are you sure you want to execute the deployment? (y/n): n
 ```
 
-If you are happy with the changes ente 'y' and start the deployment.
+If you are happy with the changes enter 'y' and start the deployment.
+
+## Check the deployment
+
+Now navigate to the Azure Portal, go to your Resource Group and you will see that the Storage Account is there.
+
+## Housekeeping
+
+Before we go on to the next challenge, delete your resource group using Azure CLI and the **group delete** command:
+
+```Shell
+az group delete -n <RG name>
+```
