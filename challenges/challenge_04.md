@@ -34,13 +34,19 @@ Copy the JSON output object for your service principal:
 ```
 
 Open your GitHub repository 'iac-basics-workshop' an go to **Settings**.
+
 ![repo settings](./images/github-repo-settings.png)
 
+
 Select Secrets and then **New repository secrets**.
+
 ![select secrets](./images/select-secrets.png)
 
+
 Paste in your JSON object for your service principal with the name AZURE_CREDENTIALS.
+
 ![az creds](./images/azure-credentials.png)
+
 
 ## Create a Workflow that logs on to Azure
 
