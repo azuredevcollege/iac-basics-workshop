@@ -11,7 +11,7 @@ Open a shell and navigate to the **iac-basics-workshop** folder on your local ma
 ## Add a parameter and reference it
 
 You can find the template under **challenges/templates/challenge_04/storage.json**. Open the file and have a look at it. 
-The template is a static one, because no parameters can be bassed during deployment time. 
+The template is a static one, because no parameters can be passed during deployment time. 
 We will now add a parameter that will allow us to set the name of the storage account at deployment time. 
 If you have installed the ARM template extension correctly, it will help you to add and reference the parameter.
 
