@@ -1,4 +1,4 @@
-name: Autehticate Azure Test
+name: Authenticate Azure Test
 
 on:
   workflow_dispatch:
