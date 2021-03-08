@@ -121,5 +121,17 @@ git commit -m "added auth test workflow "
 git push
 ```
 
+### Run the workflow
 
+Now open a browser and navigate to your GitHub **iac-basics-workshop** repository, go to Actions and you will see your created workflow **Authenticate Azure Test**.
+![Authenticate Azure Test](./images/authenticate-azure-test.png)
 
+Now run the workflow. First click on the workflow **Autehticate Azure Test** then click **Run workflow** and select the main branch. Confirm your branch selection by clicking the green **Run workflow** button:
+![KickOff Auth Test](./images/kickoff-auth-test.png)
+
+Now click on the running workflow to see more details. Navigate through the interface and see all the information about the run.
+![Navigate](./images/auth-test-details.png)
+
+## Congratulations
+
+You have created your first GitHub workflow and used a service prinicpal to login to Azure.
