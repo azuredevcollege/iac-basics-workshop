@@ -93,7 +93,7 @@ steps:
 
 ### Add the workflow file to your remote repository
 
-Your workflow file **.github/workflows/authenticate-test.yml should now look like this:
+Your workflow file **.github/workflows/authenticate-test.yml** should now look like this:
 
 ```yaml
 name: Authenticate Azure Test
@@ -131,6 +131,10 @@ Now run the workflow. First click on the workflow **Autehticate Azure Test** the
 
 Now click on the running workflow to see more details. Navigate through the interface and see all the information about the run.
 ![Navigate](./images/auth-test-details.png)
+
+## Add a Step to deploy an Azure ARM Template
+
+Todo
 
 ## Congratulations
 
