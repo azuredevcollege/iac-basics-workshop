@@ -77,7 +77,7 @@ jobs:
   login-azure:
     steps:
       - name: "Login via Azure CLI"
-        uses: azure/ligin@v1
+        uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
 ```
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Login via Azure CLI"
-        uses: azure/ligin@v1
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Show Azure Account
