@@ -62,7 +62,7 @@ There are several options for triggering a workflow. To get a full list of all a
 We use the **worklow_dispatch** trigger in our example to be able to trigger a workflow manually. To use this trigger your workflow trigger will look like this:
 
 ```yaml
-name: Autehticate Azure Test
+name: Authenticate Azure Test
 on:
   workflow_dispatch:
 ```
@@ -96,7 +96,7 @@ steps:
 Your workflow file **.github/workflows/authenticate-test.yml should now look like this:
 
 ```yaml
-name: Autehticate Azure Test
+name: Authenticate Azure Test
 
 on:
   workflow_dispatch:
