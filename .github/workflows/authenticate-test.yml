@@ -1,0 +1,15 @@
+name: Autehticate Azure Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  login-azure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Login via Azure CLI"
+        uses: azure/ligin@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Show Azure Account
+        run: az account show

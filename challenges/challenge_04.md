@@ -52,3 +52,74 @@ Paste in your JSON object for your service principal with the name AZURE_CREDENT
 
 Now we create our first workflow to check if the workflow can authenticate.
 Workflows are stored in **.github/workflows** of your repository's root directory.
+
+Create a workflow file unter **.github/workflows** and name it **authenticate-test.yml**.
+
+### Options for triggering a workflow 
+
+There are several options for triggering a workflow. To get a full list of all available trigger have a look at [Events that trigger workflows](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) at GitHub documentation.
+
+We use the **worklow_dispatch** trigger in our example to be able to trigger a workflow manually. To use this trigger your workflow trigger will look like this:
+
+```yaml
+name: Autehticate Azure Test
+on:
+  workflow_dispatch:
+```
+
+### GitHub Actions
+
+The [GitHub Marketplace](https://github.com/marketplace?type=actions&query=azure) has several actions that help you automate Azure related tasks.
+As we want to login to Azure we use the [azure/login@v1](https://github.com/Azure/login) GitHub Action and pass the **AZURE_CREDENTIALS** secret to authenticate using the previous created service principal:
+
+``` yaml
+jobs:
+  login-azure:
+    steps:
+      - name: "Login via Azure CLI"
+        uses: azure/ligin@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
+To see if the workflow is authenticated and uses the right subscription, we can run command-line programs using the operatings system's shell:
+
+```yaml
+steps:
+...
+  - name: Show Azure Account
+    run: az account show
+```
+
+### Add the workflow file to your remote repository
+
+Your workflow file **.github/workflows/authenticate-test.yml should now look like this:
+
+```yaml
+name: Autehticate Azure Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  login-azure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Login via Azure CLI"
+        uses: azure/ligin@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Show Azure Account
+        run: az account show
+```
+
+Save the file, add, commit and push the changes:
+
+```Shell
+git add .
+git commit -m "added auth test workflow "
+git push
+```
+
+
+
