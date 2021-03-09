@@ -32,5 +32,5 @@ jobs:
               pull_number: ${{ github.event.number }}
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ${{ steps.what-if-deployment.outputs.changes }}
+              body: "${{ steps.what-if-deployment.outputs.changes }}"
             })
