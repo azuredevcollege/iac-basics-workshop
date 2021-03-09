@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ResourceGroupName: "<your RG name>"
+      ResourceGroupName: "anmgh-rg"
       ResourceGroupLocation: "westeurope"
-      StorageAccountName: "<your StorageAccount name>"
+      StorageAccountName: "anmhghatest"
 
     steps:
       - name: "Login via Azure CLI"
@@ -31,5 +31,5 @@ jobs:
       - uses: azure/arm-deploy@v1
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
-          template: "./challenges/challenge_03/storage.json"
+          template: "./challenges/templates/challenge_03/storage.json"
           parameters: storageAccountName=${{ env.StorageAccountName }}
