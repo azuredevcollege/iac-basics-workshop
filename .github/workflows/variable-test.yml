@@ -23,8 +23,8 @@ jobs:
       #   id: what-if-deployment
       - name: What-if deployment
         run: |
-          RESULT=$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm')
-          printf -v VAR "\"%q\"" $RESULT
+          RESULT=$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm' --no-pretty-print)
+          printf -v VAR "%q $RESULT
           echo ::set-output name=changes::$VAR
         id: what-if-deployment
       - name: What-if-output
