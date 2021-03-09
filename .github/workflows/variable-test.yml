@@ -29,7 +29,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.pulls.createReviewComment({
-              pull_number: ${{ github.event.number }}
+              pull_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: "hello World"
