@@ -36,6 +36,6 @@ jobs:
               pull_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              commit_id: ${{ github.sha }},
+              commit_id: "${{ github.sha }}",
               body: "hello World"
             })
