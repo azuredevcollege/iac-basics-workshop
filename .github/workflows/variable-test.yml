@@ -1,0 +1,15 @@
+name: Variable test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  variable-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Variable
+        run: echo ::set-output name=myvariable::myvalue
+        id: set-variable
+      - name: Display Variable
+        run: echo '${{ steps.set-variable.outputs.myvariable }}'  
