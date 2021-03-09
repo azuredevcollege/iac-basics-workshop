@@ -1,0 +1,35 @@
+name: Storage ARM Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-storage:
+    runs-on: ubuntu-latest
+
+    env:
+      ResourceGroupName: "<your RG name>"
+      ResourceGroupLocation: "westeurope"
+      StorageAccountName: "<your StorageAccount name>"
+
+    steps:
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: actions/checkout@v2
+      - uses: Azure/CLI@v1
+        with:
+          inlineScript: |
+            #!/bin/bash
+            if $(az group exists --name ${{ env.ResourceGroupName }}) ; then
+              echo "Azure resource group already exists, skipping creation..."
+            else
+              az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+              echo "Azure resource group created"
+            fi
+      - uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ env.ResourceGroupName }}
+          template: "./challenges/challenge_03/storage.json"
+          parameters: storageAccountName=${{ env.StorageAccountName }}

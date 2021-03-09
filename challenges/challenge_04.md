@@ -124,18 +124,124 @@ git push
 ### Run the workflow
 
 Now open a browser and navigate to your GitHub **iac-basics-workshop** repository, go to Actions and you will see your created workflow **Authenticate Azure Test**.
+
 ![Authenticate Azure Test](./images/authenticate-azure-test.png)
 
+
 Now run the workflow. First click on the workflow **Autehticate Azure Test** then click **Run workflow** and select the main branch. Confirm your branch selection by clicking the green **Run workflow** button:
+
 ![KickOff Auth Test](./images/kickoff-auth-test.png)
 
+
 Now click on the running workflow to see more details. Navigate through the interface and see all the information about the run.
+
 ![Navigate](./images/auth-test-details.png)
+
 
 ## Add a Step to deploy an Azure ARM Template
 
-Todo
+Now that we have seen how to authenticate a workflow against Azure it's time to deploy an ARM template. First clone the existsting workflow **authenticate-test.yml** and rename the clone to **storage-arm.yml**.
+We will deploy the ARM template we created in [Challenge_03](./challenge_03.md) to Azure. There is already a GitHub Action available in the [GitHub Marketplace](https://github.com/marketplace/actions/deploy-azure-resource-manager-arm-template) to deploy an Azure ARM Template. 
+
+
+The workflow needs some parameters, which we define as environment variables:
+
+```yaml
+env:
+  ResourceGroupName: "<your RG name>"
+  ResourceGroupLocation: "westeurope"
+  StorageAccountName: "<your StorageAccount name>"
+```
+
+In order to access the Azure ARM Template we need to checkout the repository, so the workflow can access it.
+[Here](https://github.com/marketplace/actions/checkout) you can find a detailes description of the **checkout** action in the GitHub Marketplace.
+
+```yaml
+- uses: actions/checkout@v2
+```
+
+To ensure that the ResourceGroup to which the ARM template is applied exists, we simply use the [Azure CLI](https://github.com/marketplace/actions/azure-cli-action) action:
+
+```yaml
+- uses: Azure/CLI@v1
+    with:
+      inlineScript: |
+        #!/bin/bash
+        if $(az group exists --name ${{ env.ResourceGroupName }}) ; then
+          echo "Azure resource group already exists, skipping creation..."
+        else
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+          echo "Azure resource group created"
+        fi
+```
+
+At end we can use the [Deploy Azure Resource Manager (ARM) Template](https://github.com/marketplace/actions/deploy-azure-resource-manager-arm-template) action to deploy the ARM template:
+
+```yaml
+- uses: azure/arm-deploy@v1
+  with:
+    resourceGroupName: ${{ env.ResourceGroupName }}
+    subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+    template: "./challenges/challenge_03/storage.json"
+    parameters: storageAccountName=${{ env.StorageAccountName }}
+```
+
+Your workflow should look like this:
+
+```yaml
+name: Storage ARM Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-storage:
+    runs-on: ubuntu-latest
+
+    env:
+      ResourceGroupName: "<your RG name>"
+      ResourceGroupLocation: "<your Azure location to use>"
+      StorageAccountName: "<your StorageAccount name>"
+
+    steps:
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: actions/checkout@v2
+      - uses: Azure/CLI@v1
+        with:
+          inlineScript: |
+            #!/bin/bash
+            if $(az group exists --name ${{ env.ResourceGroupName }}) ; then
+              echo "Azure resource group already exists, skipping creation..."
+            else
+              az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+              echo "Azure resource group created"
+            fi
+      - uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ env.ResourceGroupName }}
+          template: "./challenges/challenge_03/storage.json"
+          parameters: storageAccountName=${{ env.StorageAccountName }}
+```
+
+>  
+> **_Please_** replace all values between **'<>'** with your values!!
+
+
+Now we can add, commit and push the changes:
+
+```shell
+git add .
+git commit -m "Storage workflow"
+git push
+```
+
+Navigate to the Action section in your GitHub repository and run the workflow.
+Check if the StorageAccount was created in your subscription.
+
 
 ## Congratulations
 
-You have created your first GitHub workflow and used a service prinicpal to login to Azure.
+You have created your first GitHub workflow, used a service prinicpal to login to Azure and deployed an ARM Template.

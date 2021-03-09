@@ -1,7 +1,14 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
+    }
+  },
   "functions": [],
   "resources": [
     {
@@ -9,7 +16,7 @@
       "apiVersion": "2019-06-01",
       "kind": "StorageV2",
       "location": "[resourceGroup().location]",
-      "name": "test",
+      "name": "[parameters('storageAccountName')]",
       "sku": {
         "name": "Standard_LRS",
         "tier": "Standard"
