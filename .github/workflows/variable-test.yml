@@ -1,10 +1,11 @@
 name: Variable test
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
-  variable-test:
+  validate-what-if:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,13 +14,6 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Show Azure Account
-        run: az account show
-      - name: Set Variable
-        run: echo ::set-output name=myvariable::myvalue
-        id: set-variable
-      - name: Display Variable
-        run: echo '${{ steps.set-variable.outputs.myvariable }}'  
       # - name: What-If deployment
       #   run: echo ::set-output name=changes::$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm')
       #   id: what-if-deployment
@@ -30,3 +24,13 @@ jobs:
         id: what-if-deployment
       - name: What-if-output
         run: echo '${{ steps.what-if-deployment.outputs.changes }}'
+      - uses: actions/github-script@v3
+        with: 
+          github-token: ${{ github.token }}
+          script: |
+            github.pulls.createReviewComment({
+              pull_number: ${{ github.event.number }}
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ${{ steps.what-if-deployment.outputs.changes }}
+            })
