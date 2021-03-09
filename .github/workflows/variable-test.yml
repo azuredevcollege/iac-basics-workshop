@@ -32,10 +32,9 @@ jobs:
         with: 
           github-token: ${{ github.token }}
           script: |
-            github.pulls.createReviewComment({
+            github.issues.createComment({
               pull_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              commit_id: "${{ github.sha }}",
               body: "hello World"
             })
