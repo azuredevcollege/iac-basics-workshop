@@ -36,5 +36,5 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ${{ fromJSON(steps.what-if-deployment.outputs.changes) }}
+              body: ${{ format('{0}', steps.what-if-deployment.outputs.changes) }}
             })
