@@ -31,10 +31,10 @@ jobs:
           echo "----------------------------------------------------------------------"
           echo "$RESULT"
           echo "----------------------------------------------------------------------"
-          echo ::set-output name=changes::$(echo "$RESULT")
+          echo ::set-output name=changes::"$(echo "$RESULT")"
         id: what-if-deployment
       - name: What-if-output
-        run: echo '${{ steps.what-if-deployment.outputs.changes }}'
+        run: echo "${{ steps.what-if-deployment.outputs.changes }}"
       - uses: actions/github-script@v3
         with: 
           github-token: ${{ github.token }}
