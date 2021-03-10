@@ -32,6 +32,10 @@ jobs:
           echo "----------------------------------------------------------------------"
           echo "$RESULT"
           echo "----------------------------------------------------------------------"
+          RESULT="${RESULT//'%'/'%25'}"
+          RESULT="${RESULT//$'\n'/'%0A'}"
+          RESULT="${RESULT//$'\r'/'%0D'}"
+          echo "$RESULT"
           echo "::set-output name=changes::$RESULT"
         id: what-if-deployment
       - name: What-if-output
