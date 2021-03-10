@@ -25,7 +25,7 @@ jobs:
         run: |
           CHANGES=$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm' --no-pretty-print)
           echo $CHANGES
-          JSON=$(printf "\`\`\`JSON\n%s\n\`\`\`" $CHANGES)
+          JSON=$(printf "\`\`\`JSON\n%s\n\`\`\`" "$CHANGES")
           echo $JSON
           RESULT=$(echo $JSON | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)
           echo $RESULT
