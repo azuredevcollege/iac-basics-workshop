@@ -24,7 +24,8 @@ jobs:
       - name: What-if deployment
         run: |
           CHANGES=$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm')
-          RESULT=$(echo $CHANGES | sed s/\"/'\\\"'/g)
+          JSON=$(printf "\`\`\`JSON\n%s\n\`\`\`" $CHANGES)
+          RESULT=$(echo $JSON | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g))
           echo ::set-output name=changes::$(echo $RESULT)
         id: what-if-deployment
       - name: What-if-output
