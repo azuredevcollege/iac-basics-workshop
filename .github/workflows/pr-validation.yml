@@ -7,6 +7,7 @@ on:
 env:
   ResourceGroupName: ""
   ResourceGroupLocation: "westeurope"
+  VmUserName: m009
 
 jobs:
   deploy-from--main:
@@ -54,8 +55,8 @@ jobs:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: "./challenges/templates/challenge_05/hubspoke.json"
           parameters: >
-            winVmUser=moog 
-            winVmPassword=change@me1234?
+            winVmUser=${{ env.VmUserName }} 
+            winVmPassword=${{ secrets.VM_USER_PWD }}
             winVmDnsPrefix=hspnm
 
   what-if-deployment:
@@ -80,7 +81,7 @@ jobs:
       - name: What-if deployment
         shell: bash
         run: |
-          CHANGES="$(az deployment group what-if -n demo01 -g ${{ env.ResourceGroupName }}  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser=moog winVmPassword=change@me1234? winVmDnsPrefix=hspnm)"
+          CHANGES="$(az deployment group what-if -n demo01 -g ${{ env.ResourceGroupName }}  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser=${{ env.VmUserName }} winVmPassword=${{ secrets.VM_USER_PWD }} winVmDnsPrefix=hspnm)"
           TEXT="$(printf "\`\`\`Text\n%s\n\`\`\`" "$(echo "$CHANGES")")"
           RESULT="$(echo "$TEXT" | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)"
           RESULT="${RESULT//'%'/'%25'}"
