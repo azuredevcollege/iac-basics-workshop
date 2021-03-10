@@ -22,6 +22,7 @@ jobs:
       #   run: echo ::set-output name=changes::$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm')
       #   id: what-if-deployment
       - name: What-if deployment
+        shell: bash
         run: |
           CHANGES="$(az deployment group what-if -n demo01 -g hsp-rg  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm' --no-pretty-print)"
           echo "$CHANGES"
@@ -31,7 +32,10 @@ jobs:
           echo "----------------------------------------------------------------------"
           echo "$RESULT"
           echo "----------------------------------------------------------------------"
-          echo ::set-output name=changes::"$(echo "$RESULT")"
+          RESULT="${RESULT//'%'/'%25'}"
+          RESULT="${RESULT//$'\n'/'%0A'}"
+          RESULT="${RESULT//$'\r'/'%0D'}"
+          echo "::set-output name=changes::$RESULT"
         id: what-if-deployment
       - name: What-if-output
         run: echo "${{ steps.what-if-deployment.outputs.changes }}"
