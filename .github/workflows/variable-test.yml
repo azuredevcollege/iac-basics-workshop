@@ -30,7 +30,9 @@ jobs:
           JSON=$(printf "\`\`\`JSON\n%s\n\`\`\`" "$(echo $CHANGES)")
           echo $JSON
           RESULT=$(echo $JSON | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)
+          echo "----------------------------------------------------------------------"
           echo $RESULT
+          echo "----------------------------------------------------------------------"
           echo ::set-output name=changes::"$(echo $RESULT)"
         id: what-if-deployment
       - name: What-if-output
