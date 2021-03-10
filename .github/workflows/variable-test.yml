@@ -33,7 +33,7 @@ jobs:
           echo "----------------------------------------------------------------------"
           echo $RESULT
           echo "----------------------------------------------------------------------"
-          echo ::set-output name=changes::"$(echo $RESULT)"
+          echo ::set-output name=changes::"$RESULT"
         id: what-if-deployment
       - name: What-if-output
         run: echo '${{ steps.what-if-deployment.outputs.changes }}'
