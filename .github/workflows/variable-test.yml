@@ -31,7 +31,7 @@ jobs:
           echo $JSON
           RESULT=$(echo $JSON | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)
           echo $RESULT
-          echo ::set-output name=changes::$(echo $RESULT)
+          echo ::set-output name=changes::"$(echo $RESULT)"
         id: what-if-deployment
       - name: What-if-output
         run: echo '${{ steps.what-if-deployment.outputs.changes }}'
