@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  ResourceGroupName: "anmgh-rg"
+  ResourceGroupName: ""
   ResourceGroupLocation: "westeurope"
 
 jobs:
@@ -13,14 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3
+
+      - name: Set ResourceGroupName from slug/short
+        run: echo "ResourceGroupName=${{ env.GITHUB_HEAD_REF_SLUG_URL }}-rg" >> $GITHUB_ENV
+
       - name: Checkout main branch
         uses: actions/checkout@v2
         with:
           ref: "main"
+
       - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Login with Azure CLI
         uses: Azure/CLI@v1
         with:
@@ -32,24 +40,35 @@ jobs:
               az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
               echo "Azure resource group created"
             fi
+
       - name: Check file existence
         id: check_file
         uses: andstor/file-existence-action@v1
         with:
           files: "./challenges/templates/challenge_05/hubspoke.json"
+
       - name: Deploy from main branch
         uses: azure/arm-deploy@v1
         if: steps.check_file.outputs.files_exists == 'true'
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: "./challenges/templates/challenge_05/hubspoke.json"
-          parameters: winVmUser='moog' winVmPassword='change@me1234?' winVmDnsPrefix='hspnm'
+          parameters: >
+            winVmUser=moog 
+            winVmPassword=change@me1234?
+            winVmDnsPrefix=hspnm
 
   what-if-deployment:
     runs-on: ubuntu-latest
     needs: deploy-from--main
 
     steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3
+        
+      - name: Set ResourceGroupName from slug/short
+        run: echo "ResourceGroupName=${{ env.GITHUB_HEAD_REF_SLUG_URL }}-rg" >> $GITHUB_ENV
+        
       - name: Checkout branch
         uses: actions/checkout@v2
         with:
