@@ -2,7 +2,7 @@ name: PullRequest Validation
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [labeled]
 
 env:
   ResourceGroupName: ""
@@ -12,6 +12,8 @@ env:
 jobs:
   deploy-from--main:
     runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'validate')
 
     steps:
       - name: Inject slug/short variables
