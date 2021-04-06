@@ -1,0 +1,22 @@
+title: Infrastructure as Code Basics
+patterns: ["**/*.md", "!**/node_modules"]
+base: /iac-basics-workshop/
+themeConfig:
+  repo: "azuredevcollege/iac-basics-workshop"
+  editLinks: true
+  sidebar:
+    [
+      ["./", "Home"],
+      ["./challenges/challenge_00.md", "Setup your system"],
+      ["./challenges/challenge_01.md", "Import the repository"],
+      ["./challenges/challenge_02.md", "Git basics"],
+      [
+        "./challenges/challenge_03.md",
+        "Create and deploy your first ARM Template",
+      ],
+      [
+        "./challenges/challenge_04.md",
+        "Create a GitHub Workflow to deploy an ARM Template",
+      ],
+      ["./challenges/challenge_05.md", "Deploy a Hub and Spoke Network"],
+    ]
