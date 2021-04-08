@@ -44,22 +44,6 @@ tree 3c4e9cd789d88d8d89c1073707c3585e41b0e614
 parent 324177edbf6d0ae3f12d657302f2627d6347c2c6
 author Clemens Wältken <clemens.waltken@microsoft.com> 1617876347 +0200
 committer Clemens Wältken <clemens.waltken@microsoft.com> 1617876347 +0200
-gpgsig -----BEGIN PGP SIGNATURE-----
-
- iQIzBAABCgAdFiEECZZlQTbRTKphEQxPO1NwAqjBl7MFAmBu1XsACgkQO1NwAqjB
- l7P6wxAAlwEXptmBm6cnf0nY4nv/qkqqf1In5jJCQjDw67U+Fv2kfdQlKYS7Jz20
- xdAU1sBEpbGgiKE2SaO71QyAgGH2O2dTJYGw/MIOXq+VGDCgC9hdpefJTAX6OAE6
- 2KPsKfCaRw8DqzNPjpUgS2kxxFECag6/cYy/6nV9VfFLdoMP2jTftigoKhjS5tCa
- Ot/nmmgR9Oc6G2g3Xg1OHSwYsrSW3hv+uxJKXPVFT8IEtDm8YApJGouWhukkFeb1
- ehD/weH/QoWxJOz7tHZG4nWjEmpk5wPkXq+vP/Sxco8sGetYs6lJ24wgqNW7jwA2
- QfxtsHptD7RQgMP6emk5hH6S5agt1pWB8dt8CMfoVMfX+Bx5gPZPrEzkvXXffId6
- T//h0zhSeneFOco3Yoj4XA/aFZ/xaaPRrN2nW+ErwKZuCjv0SpU2Y1Dm86dWQo2O
- k1tUJ4R53OTfz+HUr9OBSNXCyENw+agVg6HJq0xmD6zbauI1s9au00bhIVvx+9SG
- edzDuEHwI8K5VGamAq4T0PPs/r+jW46duSFUQXj92EyE3TsycZ1bVvAl/rOCLjbb
- 9lsDv9fZWvYl1PmYonYlUpkOn4E/DZyq/ZDaGnK/280jBmKY0OjwaSVSgRmXDSAZ
- HvGtQTgT8zLJ1EPZ9Bs4Tx6rAJpFm+xSS2AfMuyZWWc+GSBoCVQ=
- =uwzb
- -----END PGP SIGNATURE-----
 
 third commit
 ```
