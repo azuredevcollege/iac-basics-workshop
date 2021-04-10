@@ -2,7 +2,7 @@ name: PullRequest Validation
 
 on:
   pull_request:
-    types: [labeled, synchronize]
+    types: [labeled]
 
 env:
   ResourceGroupName: ""
@@ -10,10 +10,25 @@ env:
   StorageAccountPrefix: "sta"
 
 jobs:
-  deploy-from--main:
+  validate-labels:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'validate')
+    steps:
+      - name: Validate validate-labels
+        if: |
+          contains(github.event.pull_request.labels.*.name, 'validate') &&
+          contains(github.event.pull_request.labels.*.name, 'stage')  
+        run: |
+          echo "Error: The two labels 'validate' and 'stage' cannot be used together"
+          exit 1
+
+  deploy-from--main:
+    runs-on: ubuntu-latest
+    needs: validate-labels
+
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'validate') ||
+      contains(github.event.pull_request.labels.*.name, 'stage')
 
     steps:
       - name: Inject slug/short variables
@@ -56,12 +71,14 @@ jobs:
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: "./challenges/templates/challenge_05/storage.json"
-          parameters: >
+          parameters: |
             storageAccountPrefix=${{ env.StorageAccountPrefix }} 
 
   what-if-deployment:
     runs-on: ubuntu-latest
     needs: deploy-from--main
+
+    if: contains(github.event.pull_request.labels.*.name, 'validate')
 
     steps:
       - name: Inject slug/short variables
@@ -104,9 +121,14 @@ jobs:
               repo: context.repo.repo,
               body: `${{ steps.what-if-deployment.outputs.changes }}`
             })
+            
+      - name: Destroy resources
+        shell: bash
+        run: az group delete -n ${{ env.ResourceGroupName }}
 
   stage-deployment:
     runs-on: ubuntu-latest
+    needs: deploy-from--main
 
     if: contains(github.event.pull_request.labels.*.name, 'stage')
 
