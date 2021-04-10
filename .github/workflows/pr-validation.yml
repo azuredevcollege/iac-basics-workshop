@@ -82,7 +82,9 @@ jobs:
         shell: bash
         run: |
           CHANGES="$(az deployment group what-if -n ${{ env.GITHUB_HEAD_REF_SLUG_URL }} -g ${{ env.ResourceGroupName }}  --template-file ./challenges/templates/challenge_05/storage.json  --parameters storageAccountPrefix=${{ env.StorageAccountPrefix }})"
-          TEXT="$(printf "## Please validate what-if deployment\n\`\`\`Text\n%s\n\`\`\`\n## To stage changes, apply the lable 'stage' to the PullRequest\n" "$(echo "$CHANGES")")"
+          HEADER="### Please validate what-if deployment:"
+          STAGE="To create a staging environment, please apply the lable 'stage' to your Pull Request."
+          TEXT="$(printf "%s\n\`\`\`Text\n%s\n\`\`\`\n%s\n" "$(echo "$HEADER")" "$(echo "$CHANGES")" "$(echo "$STAGE")")"
           RESULT="$(echo "$TEXT" | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)"
           RESULT="${RESULT//'%'/'%25'}"
           RESULT="${RESULT//$'\n'/'%0A'}"
