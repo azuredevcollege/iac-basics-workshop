@@ -144,7 +144,7 @@ jobs:
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: "./challenges/templates/challenge_05/storage.json"
-          paramaters: storageAccountPrefix=${{ env.StorageAccountPrefix }}
+          parameters: storageAccountPrefix=${{ env.StorageAccountPrefix }}
       
       - uses: actions/github-script@v3
         with: 
