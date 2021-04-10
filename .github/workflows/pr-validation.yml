@@ -157,7 +157,7 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### Deployed to stage environment:\nResourceGroup: ${{ env.ResourceGroupName }}\nTo destroy the stage environment apply the label 'destroy'`
+              body: `### Deployed to stage environment:\nResourceGroup: ${{ env.ResourceGroupName }}\n### To destroy the stage environment apply the label 'destroy'`
             })
 
   destroy-stage-deployment:
