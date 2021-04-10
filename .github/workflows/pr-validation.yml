@@ -68,7 +68,7 @@ jobs:
     if: |
       contains(github.event.pull_request.labels.*.name, 'validate') &&
       !contains(github.event.pull_request.labels.*.name, 'stage') &&
-      !contains(github.event.pull_request.labels.*.name, 'destroy') &&
+      !contains(github.event.pull_request.labels.*.name, 'destroy')
 
     steps:
       - name: Inject slug/short variables
