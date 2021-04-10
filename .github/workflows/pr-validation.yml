@@ -101,6 +101,10 @@ jobs:
           echo "::set-output name=changes::$RESULT"
         id: what-if-deployment
 
+      - name: Destroy resources
+        shell: bash
+        run: az group delete -n ${{ env.ResourceGroupName }} -y
+
       - uses: actions/github-script@v3
         with: 
           github-token: ${{ github.token }}
@@ -111,10 +115,6 @@ jobs:
               repo: context.repo.repo,
               body: `${{ steps.what-if-deployment.outputs.changes }}`
             })
-
-      - name: Destroy resources
-        shell: bash
-        run: az group delete -n ${{ env.ResourceGroupName }} -y
 
   stage-deployment:
     runs-on: ubuntu-latest
@@ -156,7 +156,7 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### Deployed to stage environment:\nResourceGroup: ${{ env.ResourceGroupName }}`
+              body: `### Deployed to stage environment:\nResourceGroup: ${{ env.ResourceGroupName }}\nTo destroy the stage environment apply the label 'destroy'`
             })
 
   destroy-stage-deployment:
