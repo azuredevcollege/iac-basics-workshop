@@ -7,7 +7,7 @@ on:
 env:
   ResourceGroupName: ""
   ResourceGroupLocation: "westeurope"
-  VmUserName: m009
+  StorageAccountPrefix: "sta"
 
 jobs:
   deploy-from--main:
@@ -48,18 +48,16 @@ jobs:
         id: check_file
         uses: andstor/file-existence-action@v1
         with:
-          files: "./challenges/templates/challenge_05/hubspoke.json"
+          files: "./challenges/templates/challenge_05/storage.json"
 
       - name: Deploy from main branch
         uses: azure/arm-deploy@v1
         if: steps.check_file.outputs.files_exists == 'true'
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
-          template: "./challenges/templates/challenge_05/hubspoke.json"
+          template: "./challenges/templates/challenge_05/storage.json"
           parameters: >
-            winVmUser=${{ env.VmUserName }} 
-            winVmPassword=${{ secrets.VM_USER_PWD }}
-            winVmDnsPrefix=hspnm
+            storageAccountPrefix=${{ env.StorageAccountPrefix }} 
 
   what-if-deployment:
     runs-on: ubuntu-latest
@@ -83,7 +81,7 @@ jobs:
       - name: What-if deployment
         shell: bash
         run: |
-          CHANGES="$(az deployment group what-if -n demo01 -g ${{ env.ResourceGroupName }}  --template-file ./challenges/templates/challenge_05/hubspoke.json  --parameters winVmUser=${{ env.VmUserName }} winVmPassword=${{ secrets.VM_USER_PWD }} winVmDnsPrefix=hspnm)"
+          CHANGES="$(az deployment group what-if -n ${{ env.GITHUB_HEAD_REF_SLUG_URL }} -g ${{ env.ResourceGroupName }}  --template-file ./challenges/templates/challenge_05/storage.json  --parameters storageAccountPrefix=${{ env.StorageAccountPrefix }}"
           TEXT="$(printf "\`\`\`Text\n%s\n\`\`\`" "$(echo "$CHANGES")")"
           RESULT="$(echo "$TEXT" | sed s/\"/'\\\"'/g | sed s/\`/'\\\`'/g)"
           RESULT="${RESULT//'%'/'%25'}"
