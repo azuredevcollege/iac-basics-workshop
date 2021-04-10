@@ -2,7 +2,7 @@ name: PullRequest Validation
 
 on:
   pull_request:
-    types: [labeled]
+    types: [labeled, synchronize]
 
 env:
   ResourceGroupName: ""
@@ -121,7 +121,7 @@ jobs:
               repo: context.repo.repo,
               body: `${{ steps.what-if-deployment.outputs.changes }}`
             })
-            
+
       - name: Destroy resources
         shell: bash
         run: az group delete -n ${{ env.ResourceGroupName }}
