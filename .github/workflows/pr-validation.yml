@@ -65,7 +65,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy-from--main
 
-    if: contains(github.event.pull_request.labels.*.name, 'validate')
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'validate') &&
+      !contains(github.event.pull_request.labels.*.name, 'stage') &&
+      !contains(github.event.pull_request.labels.*.name, 'destroy') &&
 
     steps:
       - name: Inject slug/short variables
@@ -117,7 +120,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy-from--main
 
-    if: contains(github.event.pull_request.labels.*.name, 'stage')
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'stage') &&
+      !contains(github.event.pull_request.labels.*.name, 'destroy')
 
     steps:
       - name: Inject slug/short variables
