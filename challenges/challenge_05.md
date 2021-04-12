@@ -188,20 +188,9 @@ git branch prvalidation
 git checkout prvalidation
 ```
 
-In VS Code open the file [/challenges/templates/challenge_05/storage.json](./templates/challenge_05/storage.json) and make an insignificant change in the description of the parameter __storageAccountPrefix__:
+Rename the file [/challenges/templates/challenge_05/storage.json__rename_me](./templates/challenge_05/storage.json__rename_me) to __storage.json__.
 
-```JSON
-"parameters": {
-    "storageAccountPrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "insignificant change for demo purpose only"
-      }
-    }
-  }
-```
-
-Save the file, add and commit the changes:
+Add and commit the changes:
 
 ```shell
 git add .
@@ -211,8 +200,42 @@ git commit -m "see the workflow in action"
 Next, push the branch to the remote repository:
 
 ```shell
-git push
+git push --set-upstream origin prvalidation
 ```
+
+Now the branch is available in your remote repository. Open a browser, navigate to your iac-basics-workshop repository and click the __Pull Request__ tab.
+You will see that GitHub informs you that your branch __prvalidation__ had recent pushes and thta the branch is ready to integrate by creating a Pull Request:
+
+![prvalidation-pullrequest](./images/create-prvalidation-pr.png)
+
+Click __Compare & pull request__ to open a Pull Request for your changes. If you like, you can leave a title and a comment for your pull request.
+Take the time to see what information is already provided within the pull request.
+
+![open-prvalidation-pr](./images/open-prvalidation-pr.png)
+
+Click __Create pull request__ to create your Pull Request.
+
+After the Pull Request is created, we can trigger a what-if deployment. To trigger the deployment we need to apply the label __validate__ to our Pull Request. In your open Pull Request, you can add a label in the right-hand side bar under __Labels__:
+
+![apply-label](./images/apply-label.png)
+
+Add the label validate. If you use the label validate for the first time, you have to create it:
+
+![apply-label-validate](./images/apply-validate-label.png)
+
+After the label is applied it takes some seconds until the workflow is triggered. Click on __Details__ to see more information:
+
+![validate-pr-build](./images/validate-pr-build.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
