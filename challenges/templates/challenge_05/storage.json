@@ -5,7 +5,7 @@
     "storageAccountPrefix": {
       "type": "string",
       "metadata": {
-        "description": "description"
+        "description": "prefix to use for the storage account's name"
       }
     }
   },
