@@ -1,6 +1,6 @@
 # Challenge_05 Create a Pull Request validation workflow
 
-In this challenge we will create a GitHub worflow that is used to validate a Pull Request.
+In this challenge we will create a GitHub workflow that is used to validate a Pull Request.
 If you work on a new feature or if you make changes to your production system, a best practice is to create a branch from your main branch and do all the work in the newly created branch before changes are merged back to the main branch. This strategy keeps your main branch clean and build breaks can be avoided. When you have finished your work you create a Pull Request to collaborate with other team members to review and discuss about the changes.
 
 ## The scenario
