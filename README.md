@@ -65,3 +65,4 @@ are described step by step and illustrated with practical exercises.
 - [Challenge_02](./challenges/challenge_02.md) Git basics
 - [Challenge_03](./challenges/challenge_03.md) Create and deploy your first ARM Template
 - [Challenge_04](./challenges/challenge_04.md) Create a GitHub Workflow to deploy an ARM Template
+- [Challenge_05](./challenges/challenge_05.md) Create a Pull Request validation workflow (optional)
