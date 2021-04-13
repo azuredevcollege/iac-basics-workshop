@@ -223,9 +223,41 @@ Add the label validate. If you use the label validate for the first time, you ha
 
 ![apply-label-validate](./images/apply-validate-label.png)
 
-After the label is applied it takes some seconds until the workflow is triggered. Click on __Details__ to see more information:
+After the label is applied it takes a few seconds until the workflow is triggered. Click on __Details__ to see more information:
 
 ![validate-pr-build](./images/validate-pr-build.png)
+
+When the what-if deployment has run, we see the result in the pull request, which is stored as a comment. Based on this comment, we can discuss the possible changes in the team:
+
+![what-if-bot](./images/what-if-bot.png)
+
+As a next step, we can add the label stage to deploy the changes in a temporary staging environment. We can use this environment to check the changes live:
+
+![apply-stage-label](./images/apply-stage-label.png)
+
+After the label is applied it takes a few seconds until the workflow is triggered. Click on __Details__ to see more information:
+
+![stage-build](./images/stage-build.png)
+
+When the stage deployment has run, we see the result in the pull request, which is stored as a comment. The comment contains the name of the Resource Group where the staging environment is deployed:
+
+![stage-bot](./images/stage-bot.png)
+
+Navigate to your Azure subscription in the Azure portal and check if the resource group is there.
+
+As mentioned in the comment, we can delete the staging environment when we add the label destroy. Again, it takes a few seconds until the workflow is started:
+
+![apply-destroy-label](./images/apply-destroy-label.png)
+
+
+
+## Congratulations
+
+You have seen how you can use a pull request and a GitHub workflow in an advanced scenario.
+
+
+
+
 
 
 
