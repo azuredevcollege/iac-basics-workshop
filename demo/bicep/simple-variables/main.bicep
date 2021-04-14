@@ -3,7 +3,7 @@
 param storageAccountPrefix string = 'dev'
 
 // string interpolation instead of
-// [format('data{0}', parameters('suffix'))]
+// "[format('{0}{1}', parameters('storageAccountPrefix'), take(uniqueString(resourceGroup().id), 4))]"
 var storageName = '${storageAccountPrefix}${take(uniqueString(resourceGroup().id), 4)}'
 var location = resourceGroup().location
 
