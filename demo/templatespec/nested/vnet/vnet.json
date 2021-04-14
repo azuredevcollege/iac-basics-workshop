@@ -26,7 +26,7 @@
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[variables('subnetAddressPrefix')]"
+                        "[variables('vnetAddressPrefix')]"
                         ]
                 },
                 "subnets": [
