@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "suffix": {
+      "type": "string",
+      "defaultValue": "dev"
+    }
+  },
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "storageDeploy",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "suffix": {
+            "value": "[parameters('suffix')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "suffix": {
+              "type": "string",
+              "defaultValue": "dev"
+            }
+          },
+          "functions": [],
+          "variables": {
+            "storageName": "[format('data{0}', parameters('suffix'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2019-06-01",
+              "name": "[variables('storageName')]",
+              "location": "[parameters('location')]",
+              "kind": "Storage",
+              "sku": {
+                "tier": "Standard",
+                "name": "Standard_LRS"
+              }
+            }
+          ],
+          "outputs": {
+            "storageId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "vnetDeploy",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "suffix": {
+            "value": "[parameters('suffix')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "suffix": {
+              "type": "string",
+              "defaultValue": "dev"
+            }
+          },
+          "functions": [],
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks",
+              "apiVersion": "2020-06-01",
+              "name": "[format('myvnet-{0}', parameters('suffix'))]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "12.0.0.0/16"
+                  ]
+                },
+                "subnets": [
+                  {
+                    "name": "subnet1",
+                    "properties": {
+                      "addressPrefix": "12.0.0.0/24"
+                    }
+                  },
+                  {
+                    "name": "subnet2",
+                    "properties": {
+                      "addressPrefix": "12.0.1.0/24"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "outputs": {
+            "vnetId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks', format('myvnet-{0}', parameters('suffix')))]"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "storageId": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(resourceGroup().id, 'Microsoft.Resources/deployments', 'storageDeploy'), '2019-10-01').outputs.storageId.value]"
+    },
+    "vnetId": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(resourceGroup().id, 'Microsoft.Resources/deployments', 'vnetDeploy'), '2019-10-01').outputs.vnetId.value]"
+    }
+  }
+}
