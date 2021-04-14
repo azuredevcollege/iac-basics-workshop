@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "prefix": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 5,
+            "defaultValue": "dev"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "StorageAccount",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "./storage/storage.json"
+                },
+                "parameters": {
+                    "storageAccountPrefix": "[parameters('prefix')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "VirtualNetwork",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "./vnet/vnet.json"
+                },
+                "parameters": {
+                    "vnetPrefix": "[parameters('prefix')]"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

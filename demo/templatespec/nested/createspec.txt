@@ -1,0 +1,3 @@
+To create a Template Spec run the following Azure CLI Command:
+
+az ts create --name <name> --version "1.0.0.0" --resource-group <rg> --location <l> --template-file ./main.json
