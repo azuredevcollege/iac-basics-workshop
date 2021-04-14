@@ -25,7 +25,9 @@
             "location": "[variables('location')]",
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": "[variables('vnetAddressPrefix')]"
+                    "addressPrefixes": [
+                        "[variables('subnetAddressPrefix')]"
+                        ]
                 },
                 "subnets": [
                 {

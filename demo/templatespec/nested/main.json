@@ -22,7 +22,9 @@
                     "relativePath": "./storage/storage.json"
                 },
                 "parameters": {
-                    "storageAccountPrefix": "[parameters('prefix')]"
+                    "storageAccountPrefix": {
+                        "value": "[parameters('prefix')]"
+                    }
                 }
             }
         },
@@ -36,7 +38,9 @@
                     "relativePath": "./vnet/vnet.json"
                 },
                 "parameters": {
-                    "vnetPrefix": "[parameters('prefix')]"
+                    "vnetPrefix": {
+                        "value": "[parameters('prefix')]"
+                    }
                 }
             }
         }
