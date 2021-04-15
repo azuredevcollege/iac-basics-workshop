@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Challenge_03 Create and deploy your first ARM Template | Infrastructure as Code Basics</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css" as="style"><link rel="preload" href="/iac-basics-workshop/assets/js/app.4b7700f7.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/2.4b56f390.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/13.2ad9f6bf.js" as="script"><link rel="prefetch" href="/iac-basics-workshop/assets/js/10.d38dce0b.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/11.a007f64a.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/12.0feb5ec5.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/3.65a53ed6.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/4.30920b48.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/5.d95be30f.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/6.908d09fa.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/7.c7c819d2.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/8.edf9252e.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/9.d56bb1c7.js">
+    <link rel="stylesheet" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/iac-basics-workshop/" class="home-link router-link-active"><!----> <span class="site-name">Infrastructure as Code Basics</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/iac-basics-workshop/" aria-current="page" class="sidebar-link">Home</a></li><li><a href="/iac-basics-workshop/challenges/challenge_00.html" class="sidebar-link">Setup your system</a></li><li><a href="/iac-basics-workshop/challenges/challenge_01.html" class="sidebar-link">Import the repository</a></li><li><a href="/iac-basics-workshop/challenges/challenge_02.html" class="sidebar-link">Git basics</a></li><li><a href="/iac-basics-workshop/challenges/challenge_03.html" aria-current="page" class="active sidebar-link">Create and deploy your first ARM Template</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_03.html#add-a-parameter-and-reference-it" class="sidebar-link">Add a parameter and reference it</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_03.html#deploy-the-arm-template-to-azure" class="sidebar-link">Deploy the ARM Template to Azure</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_03.html#check-the-deployment" class="sidebar-link">Check the deployment</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_03.html#housekeeping" class="sidebar-link">Housekeeping</a></li></ul></li><li><a href="/iac-basics-workshop/challenges/challenge_04.html" class="sidebar-link">Create a GitHub Workflow to deploy an ARM Template</a></li><li><a href="/iac-basics-workshop/challenges/challenge_05.html" class="sidebar-link">Deploy a Hub and Spoke Network</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="challenge-03-create-and-deploy-your-first-arm-template"><a href="#challenge-03-create-and-deploy-your-first-arm-template" class="header-anchor">#</a> Challenge_03 Create and deploy your first ARM Template</h1> <p>In this challenge we want to deploy our first ARM template. To keep things as
+simple as possible an ARM Template which describes an Azure Storage Account
+is already prepared for you.</p> <p>Open a shell and navigate to the <strong>iac-basics-workshop</strong> folder on your local
+machine and open VS Code:</p> <div class="language-shell extra-class"><pre class="language-shell"><code>code <span class="token builtin class-name">.</span>
+</code></pre></div><h2 id="add-a-parameter-and-reference-it"><a href="#add-a-parameter-and-reference-it" class="header-anchor">#</a> Add a parameter and reference it</h2> <p>You can find the template under
+<strong>challenges/templates/challenge_03/storage.json</strong>. Open the file and have a
+look at it. The template is a static one, because no parameters can be passed
+during deployment time. We will now add a parameter that will allow us to set
+the name of the storage account at deployment time. If you have installed the
+ARM template extension correctly, it will help you to add and reference the
+parameter.</p> <p>Add the parameter ...</p> <div class="language-json extra-class"><pre class="language-json"><code>  <span class="token property">&quot;parameters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;storageAccountName&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;metadata&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;description&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>... and reference it.</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;[parameters('storageAccountName')]&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><h2 id="deploy-the-arm-template-to-azure"><a href="#deploy-the-arm-template-to-azure" class="header-anchor">#</a> Deploy the ARM Template to Azure</h2> <p>To deploy the ARM Template we need to login to Azure first. Use the Azure CLI
+and the <strong>login</strong> command to authenticate:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az login
+</code></pre></div><p>After you have logged in, check if we use the right Azure subscription:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az account show -o table
+</code></pre></div><p>If you ar not connected to the right subscription use the <strong>account set</strong>
+command and specify the id of the desired Azure subscription:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az account <span class="token builtin class-name">set</span> -s <span class="token operator">&lt;</span>your subscription id<span class="token operator">&gt;</span>
+</code></pre></div><p>Create a resource group with the <strong>group create</strong> command:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az group create -n <span class="token operator">&lt;</span>RG name<span class="token operator">&gt;</span> -l <span class="token operator">&lt;</span>location<span class="token operator">&gt;</span>
+</code></pre></div><p>Now we can deploy the ARM Template, but of course we want to see what changes
+the template would cause. With the Azure CLI <strong>deployment group create</strong>
+command we can deploy the template to an Azure resource group and with the
+parameter <strong>--confirm-with-what-if</strong> we can first check what will happen if
+we deploy the template:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az deployment group create -n demo01 -g <span class="token operator">&lt;</span>RG name<span class="token operator">&gt;</span>  --template-file ./storage.json --parameters <span class="token assign-left variable">storageAccountName</span><span class="token operator">=</span><span class="token operator">&lt;</span>your name<span class="token operator">&gt;</span> --confirm-with-what-if
+</code></pre></div><p>This call will output the following:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>Resource and property changes are indicated with this symbol:
+  + Create
+
+The deployment will update the following scope:
+
+Scope: /subscriptions/<span class="token operator">&lt;</span>id<span class="token operator">&gt;</span>/resourceGroups/<span class="token operator">&lt;</span>rg<span class="token operator">&gt;</span>
+
+  + Microsoft.Storage/storageAccounts/anm4211 <span class="token punctuation">[</span><span class="token number">2019</span>-06-01<span class="token punctuation">]</span>
+
+      apiVersion: <span class="token string">&quot;2019-06-01&quot;</span>
+      id:         <span class="token string">&quot;/subscriptions/&lt;id&gt;/resourceGroups/&lt;rg&gt;/providers/Microsoft.Storage/storageAccounts/&lt;name&gt;&quot;</span>
+      kind:       <span class="token string">&quot;StorageV2&quot;</span>
+      location:   <span class="token string">&quot;westeurope&quot;</span>
+      name:       <span class="token string">&quot;&lt;name&gt;&quot;</span>
+      sku.name:   <span class="token string">&quot;Standard_LRS&quot;</span>
+      type:       <span class="token string">&quot;Microsoft.Storage/storageAccounts&quot;</span>
+
+Resource changes: <span class="token number">1</span> to create.
+
+Are you sure you want to execute the deployment? <span class="token punctuation">(</span>y/n<span class="token punctuation">)</span>: n
+</code></pre></div><p>If you are happy with the changes enter 'y' and start the deployment.</p> <h2 id="check-the-deployment"><a href="#check-the-deployment" class="header-anchor">#</a> Check the deployment</h2> <p>Now navigate to the Azure Portal, go to your Resource Group and you will see
+that the Storage Account is there.</p> <h2 id="housekeeping"><a href="#housekeeping" class="header-anchor">#</a> Housekeeping</h2> <p>Before we go on to the next challenge, delete your resource group using Azure
+CLI and the <strong>group delete</strong> command:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az group delete -n <span class="token operator">&lt;</span>RG name<span class="token operator">&gt;</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/azuredevcollege/iac-basics-workshop/edit/master/challenges/challenge_03.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/iac-basics-workshop/challenges/challenge_02.html" class="prev">
+        Git basics
+      </a></span> <span class="next"><a href="/iac-basics-workshop/challenges/challenge_04.html">
+        Create a GitHub Workflow to deploy an ARM Template
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/iac-basics-workshop/assets/js/app.4b7700f7.js" defer></script><script src="/iac-basics-workshop/assets/js/2.4b56f390.js" defer></script><script src="/iac-basics-workshop/assets/js/13.2ad9f6bf.js" defer></script>
+  </body>
+</html>

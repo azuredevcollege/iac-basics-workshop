@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Challenge_04 Create a GitHub Workflow to deploy an ARM Template | Infrastructure as Code Basics</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css" as="style"><link rel="preload" href="/iac-basics-workshop/assets/js/app.4b7700f7.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/2.4b56f390.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/4.30920b48.js" as="script"><link rel="prefetch" href="/iac-basics-workshop/assets/js/10.d38dce0b.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/11.a007f64a.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/12.0feb5ec5.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/13.2ad9f6bf.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/3.65a53ed6.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/5.d95be30f.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/6.908d09fa.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/7.c7c819d2.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/8.edf9252e.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/9.d56bb1c7.js">
+    <link rel="stylesheet" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/iac-basics-workshop/" class="home-link router-link-active"><!----> <span class="site-name">Infrastructure as Code Basics</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/iac-basics-workshop/" aria-current="page" class="sidebar-link">Home</a></li><li><a href="/iac-basics-workshop/challenges/challenge_00.html" class="sidebar-link">Setup your system</a></li><li><a href="/iac-basics-workshop/challenges/challenge_01.html" class="sidebar-link">Import the repository</a></li><li><a href="/iac-basics-workshop/challenges/challenge_02.html" class="sidebar-link">Git basics</a></li><li><a href="/iac-basics-workshop/challenges/challenge_03.html" class="sidebar-link">Create and deploy your first ARM Template</a></li><li><a href="/iac-basics-workshop/challenges/challenge_04.html" aria-current="page" class="active sidebar-link">Create a GitHub Workflow to deploy an ARM Template</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_04.html#grant-a-github-workflow-access-to-your-azure-subscription" class="sidebar-link">Grant a GitHub Workflow access to your Azure Subscription</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_04.html#create-a-workflow-that-logs-on-to-azure" class="sidebar-link">Create a Workflow that logs on to Azure</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_04.html#add-a-step-to-deploy-an-azure-arm-template" class="sidebar-link">Add a Step to deploy an Azure ARM Template</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_04.html#congratulations" class="sidebar-link">Congratulations</a></li></ul></li><li><a href="/iac-basics-workshop/challenges/challenge_05.html" class="sidebar-link">Deploy a Hub and Spoke Network</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="challenge-04-create-a-github-workflow-to-deploy-an-arm-template"><a href="#challenge-04-create-a-github-workflow-to-deploy-an-arm-template" class="header-anchor">#</a> Challenge_04 Create a GitHub Workflow to deploy an ARM Template</h1> <p>In this challenge, we create a GitHub workflow to deploy the ARM template we
+created in the previous challenge. A GitHub Workflow is an automated pipeline
+to build and deploy artifacts like an Azure ARM Template. A workflow is like
+an orchestration of multiple jobs and steps to build and deploy artifacts. It
+is is kicked off by a trigger. A GitHub Workflow supports different trigger
+types, but in this challenge we trigger the workflow manually.</p> <p><a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows" target="_blank" rel="noopener noreferrer">Here<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> you can find a description of all supported trigger types.
+The <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch" target="_blank" rel="noopener noreferrer">workflow_dispatch<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> trigger allows us to trigger a workflow manually.</p> <h2 id="grant-a-github-workflow-access-to-your-azure-subscription"><a href="#grant-a-github-workflow-access-to-your-azure-subscription" class="header-anchor">#</a> Grant a GitHub Workflow access to your Azure Subscription</h2> <p>To grant a GitHub workflow access to your Azure subscription, we need to
+create an Azure AD service principal and assign it the desired rights to the
+subscription. After creating the service principal and assigning the
+permissions, we need to pass the service principal to GitHub so the workflow
+can access it. GitHub provides a secret store, to save sensitive information
+in your organization, repository or repository environment. When a workflow
+is executed these secrets are injected as encrypted environment variables and
+accessible in the workflow definition.</p> <p>To create a service principal and assign the needed rights we use the Azure
+CLI and the <strong>ad sp create-for-rbac</strong> command. Open a shell and replace the
+needed values marked with &lt;&gt;:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code>az ad sp create-for-rbac --name <span class="token string">&quot;&lt;sp name&gt;&quot;</span> --role contributor --scopes /subscriptions/<span class="token operator">&lt;</span>subscription id<span class="token operator">&gt;</span> --sdk-auth
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If you don't know your subscription id use the <strong>account show</strong> command:</p> <div class="language-shell extra-class"><pre class="language-shell"><code>az account show
+</code></pre></div></div> <p>Copy the JSON output object for your service principal:</p> <div class="language-JSON extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;clientId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;GUID&gt;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;clientSecret&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;GUID&gt;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;subscriptionId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;GUID&gt;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;tenantId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;GUID&gt;&quot;</span><span class="token punctuation">,</span>
+  (...)
+<span class="token punctuation">}</span>
+</code></pre></div><p>Open your GitHub repository 'iac-basics-workshop' an go to <strong>Settings</strong>.</p> <p><img src="/iac-basics-workshop/assets/img/github-repo-settings.1c6b0a45.png" alt="repo settings"></p> <p>Select Secrets and then <strong>New repository secrets</strong>.</p> <p><img src="/iac-basics-workshop/assets/img/select-secrets.ca4615a1.png" alt="select secrets"></p> <p>Paste in your JSON object for your service principal with the name
+AZURE_CREDENTIALS.</p> <p><img src="/iac-basics-workshop/assets/img/azure-credentials.07182a56.png" alt="az creds"></p> <h2 id="create-a-workflow-that-logs-on-to-azure"><a href="#create-a-workflow-that-logs-on-to-azure" class="header-anchor">#</a> Create a Workflow that logs on to Azure</h2> <p>Now we create our first workflow to check if the workflow can authenticate.
+Workflows are stored in <strong>.github/workflows</strong> of your repository's root
+directory.</p> <p>Create a workflow file under <strong>.github/workflows</strong> and name it
+<strong>authenticate-test.yml</strong>.</p> <h3 id="options-for-triggering-a-workflow"><a href="#options-for-triggering-a-workflow" class="header-anchor">#</a> Options for triggering a workflow</h3> <p>There are several options for triggering a workflow. To get a full list of
+all available trigger have a look at <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows" target="_blank" rel="noopener noreferrer">Events that trigger
+workflows<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+at GitHub documentation.</p> <p>We use the <strong>worklow_dispatch</strong> trigger in our example to be able to trigger
+a workflow manually. To use this trigger your workflow trigger will look like
+this:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Authenticate Azure Test
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
+</code></pre></div><h3 id="github-actions"><a href="#github-actions" class="header-anchor">#</a> GitHub Actions</h3> <p>The <a href="https://github.com/marketplace?type=actions&amp;query=azure" target="_blank" rel="noopener noreferrer">GitHub
+Marketplace<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> has
+several actions that help you automate Azure related tasks. As we want to
+login to Azure we use the <a href="https://github.com/Azure/login" target="_blank" rel="noopener noreferrer">azure/login@v1<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+GitHub Action and pass the <strong>AZURE_CREDENTIALS</strong> secret to authenticate using
+the previous created service principal:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">login-azure</span><span class="token punctuation">:</span>
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;Login via Azure CLI&quot;</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> azure/login@v1
+          <span class="token key atrule">with</span><span class="token punctuation">:</span>
+            <span class="token key atrule">creds</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.AZURE_CREDENTIALS <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div><p>To see if the workflow is authenticated and uses the right subscription, we
+can run command-line programs using the operating systems shell:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">steps</span><span class="token punctuation">:</span>
+<span class="token punctuation">---</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Show Azure Account
+  <span class="token key atrule">run</span><span class="token punctuation">:</span> az account show
+</code></pre></div><h3 id="add-the-workflow-file-to-your-remote-repository"><a href="#add-the-workflow-file-to-your-remote-repository" class="header-anchor">#</a> Add the workflow file to your remote repository</h3> <p>Your workflow file <strong>.github/workflows/authenticate-test.yml</strong> should now
+look like this:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Authenticate Azure Test
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">login-azure</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Login via Azure CLI'</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> azure/login@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">creds</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.AZURE_CREDENTIALS <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Show Azure Account
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> az account show
+</code></pre></div><p>Save the file, add, commit and push the changes:</p> <div class="language-Shell extra-class"><pre class="language-shell"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;added auth test workflow &quot;</span>
+<span class="token function">git</span> push
+</code></pre></div><h3 id="run-the-workflow"><a href="#run-the-workflow" class="header-anchor">#</a> Run the workflow</h3> <p>Now open a browser and navigate to your GitHub <strong>iac-basics-workshop</strong>
+repository, go to Actions and you will see your created workflow
+<strong>Authenticate Azure Test</strong>.</p> <p><img src="/iac-basics-workshop/assets/img/authenticate-azure-test.10df58f8.png" alt="Authenticate Azure Test"></p> <p>Now run the workflow. First click on the workflow <strong>Authenticate Azure Test</strong>
+then click <strong>Run workflow</strong> and select the main branch. Confirm your branch
+selection by clicking the green <strong>Run workflow</strong> button:</p> <p><img src="/iac-basics-workshop/assets/img/kickoff-auth-test.a48edc83.png" alt="KickOff Auth Test"></p> <p>Now click on the running workflow to see more details. Navigate through the
+interface and see all the information about the run.</p> <p><img src="/iac-basics-workshop/assets/img/auth-test-details.3d6f540e.png" alt="Navigate"></p> <h2 id="add-a-step-to-deploy-an-azure-arm-template"><a href="#add-a-step-to-deploy-an-azure-arm-template" class="header-anchor">#</a> Add a Step to deploy an Azure ARM Template</h2> <p>Now that we have seen how to authenticate a workflow against Azure it's time
+to deploy an ARM template. First clone the existing workflow
+<strong>authenticate-test.yml</strong> and rename the clone to <strong>storage-arm.yml</strong>. We
+will deploy the ARM template we created in <a href="/iac-basics-workshop/challenges/challenge_03.html">Challenge_03</a>
+to Azure. There is already a GitHub Action available in the <a href="https://github.com/marketplace/actions/deploy-azure-resource-manager-arm-template" target="_blank" rel="noopener noreferrer">GitHub
+Marketplace<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+to deploy an Azure ARM Template.</p> <p>The workflow needs some parameters, which we define as environment variables:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ResourceGroupName</span><span class="token punctuation">:</span> <span class="token string">'&lt;your RG name&gt;'</span>
+  <span class="token key atrule">ResourceGroupLocation</span><span class="token punctuation">:</span> <span class="token string">'westeurope'</span>
+  <span class="token key atrule">StorageAccountName</span><span class="token punctuation">:</span> <span class="token string">'&lt;your StorageAccount name&gt;'</span>
+</code></pre></div><p>In order to access the Azure ARM Template we need to checkout the repository,
+so the workflow can access it.
+<a href="https://github.com/marketplace/actions/checkout" target="_blank" rel="noopener noreferrer">Here<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> you can find a
+details description of the <strong>checkout</strong> action in the GitHub Marketplace.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+</code></pre></div><p>To ensure that the ResourceGroup to which the ARM template is applied exists,
+we simply use the <a href="https://github.com/marketplace/actions/azure-cli-action" target="_blank" rel="noopener noreferrer">Azure
+CLI<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> action:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> Azure/CLI@v1
+    <span class="token key atrule">with</span><span class="token punctuation">:</span>
+      <span class="token key atrule">inlineScript</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        #!/bin/bash
+        if $(az group exists --name ${{ env.ResourceGroupName }}) ; then
+          echo &quot;Azure resource group already exists, skipping creation...&quot;
+        else
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+          echo &quot;Azure resource group created&quot;
+        fi</span>
+</code></pre></div><p>At end we can use the <a href="https://github.com/marketplace/actions/deploy-azure-resource-manager-arm-template" target="_blank" rel="noopener noreferrer">Deploy Azure Resource Manager (ARM)
+Template<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+action to deploy the ARM template:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> azure/arm<span class="token punctuation">-</span>deploy@v1
+  <span class="token key atrule">with</span><span class="token punctuation">:</span>
+    <span class="token key atrule">resourceGroupName</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> env.ResourceGroupName <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token key atrule">subscription</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.AZURE_SUBSCRIPTION <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token key atrule">template</span><span class="token punctuation">:</span> <span class="token string">'./challenges/challenge_03/storage.json'</span>
+    <span class="token key atrule">parameters</span><span class="token punctuation">:</span> storageAccountName=$<span class="token punctuation">{</span><span class="token punctuation">{</span> env.StorageAccountName <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div><p>Your workflow should look like this:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Storage ARM Template
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">deploy-storage</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+
+    <span class="token key atrule">env</span><span class="token punctuation">:</span>
+      <span class="token key atrule">ResourceGroupName</span><span class="token punctuation">:</span> <span class="token string">'&lt;your RG name&gt;'</span>
+      <span class="token key atrule">ResourceGroupLocation</span><span class="token punctuation">:</span> <span class="token string">'&lt;your Azure location to use&gt;'</span>
+      <span class="token key atrule">StorageAccountName</span><span class="token punctuation">:</span> <span class="token string">'&lt;your StorageAccount name&gt;'</span>
+
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Login via Azure CLI'</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> azure/login@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">creds</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.AZURE_CREDENTIALS <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> Azure/CLI@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">inlineScript</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+            #!/bin/bash
+            if $(az group exists --name ${{ env.ResourceGroupName }}) ; then
+              echo &quot;Azure resource group already exists, skipping creation...&quot;
+            else
+              az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+              echo &quot;Azure resource group created&quot;
+            fi</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> azure/arm<span class="token punctuation">-</span>deploy@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">resourceGroupName</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> env.ResourceGroupName <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token key atrule">template</span><span class="token punctuation">:</span> <span class="token string">'./challenges/challenge_03/storage.json'</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span> storageAccountName=$<span class="token punctuation">{</span><span class="token punctuation">{</span> env.StorageAccountName <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Please replace all values between <strong>'&lt;&gt;'</strong> with your values!!</p></div> <p>Now we can add, commit and push the changes:</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;Storage workflow&quot;</span>
+<span class="token function">git</span> push
+</code></pre></div><p>Navigate to the Action section in your GitHub repository and run the
+workflow. Check if the StorageAccount was created in your subscription.</p> <h2 id="congratulations"><a href="#congratulations" class="header-anchor">#</a> Congratulations</h2> <p>You have created your first GitHub workflow, used a service principal to
+login to Azure and deployed an ARM Template.</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/azuredevcollege/iac-basics-workshop/edit/master/challenges/challenge_04.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/iac-basics-workshop/challenges/challenge_03.html" class="prev">
+        Create and deploy your first ARM Template
+      </a></span> <span class="next"><a href="/iac-basics-workshop/challenges/challenge_05.html">
+        Deploy a Hub and Spoke Network
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/iac-basics-workshop/assets/js/app.4b7700f7.js" defer></script><script src="/iac-basics-workshop/assets/js/2.4b56f390.js" defer></script><script src="/iac-basics-workshop/assets/js/4.30920b48.js" defer></script>
+  </body>
+</html>

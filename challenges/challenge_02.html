@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Git Basics | Infrastructure as Code Basics</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css" as="style"><link rel="preload" href="/iac-basics-workshop/assets/js/app.4b7700f7.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/2.4b56f390.js" as="script"><link rel="preload" href="/iac-basics-workshop/assets/js/9.d56bb1c7.js" as="script"><link rel="prefetch" href="/iac-basics-workshop/assets/js/10.d38dce0b.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/11.a007f64a.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/12.0feb5ec5.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/13.2ad9f6bf.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/3.65a53ed6.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/4.30920b48.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/5.d95be30f.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/6.908d09fa.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/7.c7c819d2.js"><link rel="prefetch" href="/iac-basics-workshop/assets/js/8.edf9252e.js">
+    <link rel="stylesheet" href="/iac-basics-workshop/assets/css/0.styles.6d1f95f5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/iac-basics-workshop/" class="home-link router-link-active"><!----> <span class="site-name">Infrastructure as Code Basics</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/azuredevcollege/iac-basics-workshop" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/iac-basics-workshop/" aria-current="page" class="sidebar-link">Home</a></li><li><a href="/iac-basics-workshop/challenges/challenge_00.html" class="sidebar-link">Setup your system</a></li><li><a href="/iac-basics-workshop/challenges/challenge_01.html" class="sidebar-link">Import the repository</a></li><li><a href="/iac-basics-workshop/challenges/challenge_02.html" aria-current="page" class="active sidebar-link">Git basics</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_02.html#the-basics" class="sidebar-link">The basics</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_02.html#helpful-resources" class="sidebar-link">Helpful resources</a></li><li class="sidebar-sub-header"><a href="/iac-basics-workshop/challenges/challenge_02.html#how-to-create-a-sample-tree" class="sidebar-link">How to create a sample tree</a></li></ul></li><li><a href="/iac-basics-workshop/challenges/challenge_03.html" class="sidebar-link">Create and deploy your first ARM Template</a></li><li><a href="/iac-basics-workshop/challenges/challenge_04.html" class="sidebar-link">Create a GitHub Workflow to deploy an ARM Template</a></li><li><a href="/iac-basics-workshop/challenges/challenge_05.html" class="sidebar-link">Deploy a Hub and Spoke Network</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="git-basics"><a href="#git-basics" class="header-anchor">#</a> Git Basics</h1> <p>In this section we will provide you a brief introduction to git as well as
+some materials for self study.</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If you already have some experience using git you can jump immediately to
+<a href="#helpful-resources">resources section</a> and start the <em>Learn Git Branching</em>
+exercise.</p></div> <h2 id="the-basics"><a href="#the-basics" class="header-anchor">#</a> The basics</h2> <p>You are using git for the first time or coming back to it? <strong>Start here!</strong></p> <h3 id="settings-for-first-timers"><a href="#settings-for-first-timers" class="header-anchor">#</a> Settings for first timers</h3> <p>Git writes commit with your name and email address as metadata. Before you
+start doing anything with it let's setup the basics.</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">git</span> config --global user.name <span class="token string">&quot;Alex Sample&quot;</span>
+<span class="token function">git</span> config --global user.email <span class="token string">&quot;alex@sample.com&quot;</span>
+<span class="token function">git</span> config --global core.editor <span class="token string">&quot;code --wait&quot;</span>
+<span class="token function">git</span> config --list
+</code></pre></div><p>Setting the <code>core.editor</code> tells git to use VSCode as your preferred editor
+for commit messages. Set this if you do not know vim or configure to your own
+preference.</p> <p>The <code>--list</code> command shows you all currently active settings. They take into
+account your current projects settings, your <em>global</em> user settings and your
+<em>system</em> settings.</p> <h3 id="creating-the-first-repository"><a href="#creating-the-first-repository" class="header-anchor">#</a> Creating the first repository</h3> <p>Now we are ready to go. Fire up a command line window and create a new
+folder. Then run the <code>git init</code> command inside that folder to enable the git
+version control for it.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">mkdir</span> getting-started <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> getting-started
+$ <span class="token function">git</span> init
+Initialized empty Git repository <span class="token keyword">in</span> /home/<span class="token operator">&lt;</span>username<span class="token operator">&gt;</span>/getting-started/.git/
+$ <span class="token function">git</span> status
+On branch master
+
+No commits yet
+
+nothing to commit <span class="token punctuation">(</span>create/copy files and use <span class="token string">&quot;git add&quot;</span> to track<span class="token punctuation">)</span>
+</code></pre></div><p>The <code>git status</code> tells you what the current state of you git repository is.
+If there are current changes or even if you are in the middle of a
+complicated <code>merge</code> or <code>rebase</code> operation.</p> <p>When in doubt run <code>git status</code>. It also gives you some instructions on
+what your next steps might be.</p> <p>Let's create a new file and see if <code>git</code> notices the difference:</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">touch</span> README.md
+$ <span class="token function">git</span> status
+On branch master
+
+No commits yet
+
+Untracked files:
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="token keyword">in</span> what will be committed<span class="token punctuation">)</span>
+        README.md
+
+nothing added to commit but untracked files present <span class="token punctuation">(</span>use <span class="token string">&quot;git add&quot;</span> to track<span class="token punctuation">)</span>
+
+</code></pre></div><p>As you can see, <code>git</code> now noticed that there is a new untracked file inside
+you folder and suggests you to use the <code>git add</code> command to add it the
+tracking.</p> <p>Let's follow the that recommendation.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+$ <span class="token function">git</span> status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="token punctuation">)</span>
+        new file:   README.md
+
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>The <strong>.</strong> in <code>git add .</code> tells <em>git</em> to track everything inside the current
+folder.</p></div> <p>Now <em>git</em> sees the new file and lists it under the <em>Changes to be committed</em>
+section.</p> <p>Let's go ahead an create our first commit.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> commit -m <span class="token string">&quot;Create empty README.md&quot;</span>
+<span class="token punctuation">[</span>master <span class="token punctuation">(</span>root-commit<span class="token punctuation">)</span> 9c158cf<span class="token punctuation">]</span> Create empty README.md
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">0</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>, <span class="token number">0</span> deletions<span class="token punctuation">(</span>-<span class="token punctuation">)</span>
+ create mode <span class="token number">100644</span> README.md
+
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If you omit the <code>-m &quot;Create empty README.md&quot;</code> from the above command, git
+will open your editor to enter the commit message. The <code>commit</code> command will
+wait for you to save and close the editor window.</p></div> <p>The <em>de facto standard</em> is to have a <code>README.md</code> markdown file on the root
+folder of your project to provide basic information and setup instruction for
+your project.</p> <div class="language-markdown extra-class"><pre class="language-markdown"><code><span class="token title important"><span class="token punctuation">#</span> Getting started with git</span>
+
+It's easy if you take one step at a time.
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> status
+On branch master
+Changes not staged <span class="token keyword">for</span> commit:
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="token punctuation">)</span>
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="token keyword">in</span> working directory<span class="token punctuation">)</span>
+        modified:   README.md
+
+no changes added to commit <span class="token punctuation">(</span>use <span class="token string">&quot;git add&quot;</span> and/or <span class="token string">&quot;git commit -a&quot;</span><span class="token punctuation">)</span>
+
+$ <span class="token function">git</span> commit -a -m <span class="token string">&quot;Add a heading and some text&quot;</span>
+<span class="token punctuation">[</span>master <span class="token number">2985691</span><span class="token punctuation">]</span> Add a heading and some text
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">3</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+</code></pre></div><p>Let's extend our current <code>README.md</code>.</p> <div class="language-markdown extra-class"><pre class="language-markdown"><code><span class="token title important"><span class="token punctuation">#</span> Getting started with git</span>
+
+Git might look intimidating to begin with...
+
+<span class="token title important"><span class="token punctuation">##</span> How hard is it?</span>
+
+It's easy if you take one step at a time.
+</code></pre></div><p>Also let's add a <code>.gitignore</code> file to ignore files that we don't want to track.</p> <div class="language-gitignore extra-class"><pre class="language-gitignore"><code><span class="token entry string"><span class="token operator">*</span>.bak</span>
+<span class="token entry string"><span class="token operator">*</span>~</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Always use a <code>.gitignore</code> file in you projects. Since git tracks every file
+in the workspace by default you will almost always have files you want to <em>ignore</em>.</p> <ul><li><p><code>node_modules/</code> module dependencies that take a lot of space and can be
+installed using lifecycle management</p></li> <li><p><code>tmp</code> any kind of temporary files and build outputs</p></li> <li><p><code>.vscode/</code> sometimes exclude editor-files and personal configuration</p></li> <li><p><code>.secrets.env</code> exclude files that may contain secrets</p></li></ul></div> <p>Let's check the outputs of <code>git status</code> and inspect the changes to the files in
+more detail.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> status
+On branch master
+Changes not staged <span class="token keyword">for</span> commit:
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="token punctuation">)</span>
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="token keyword">in</span> working directory<span class="token punctuation">)</span>
+        modified:   README.md
+
+Untracked files:
+  <span class="token punctuation">(</span>use <span class="token string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="token keyword">in</span> what will be committed<span class="token punctuation">)</span>
+        .gitignore
+
+no changes added to commit <span class="token punctuation">(</span>use <span class="token string">&quot;git add&quot;</span> and/or <span class="token string">&quot;git commit -a&quot;</span><span class="token punctuation">)</span>
+
+</code></pre></div><p>As you can see <em>git</em> noticed that we have changed the <code>README.md</code> and have a
+new file named <code>.gitignore</code> in our current working directory.</p> <p>Let's check in detail what changes it detects on the <code>README.md</code>.</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">git</span> <span class="token function">diff</span>
+</code></pre></div><p>You should see some output like this:</p> <div class="language-git extra-class"><pre class="language-git"><code>diff --git a/README.md b/README.md
+index cebce42..456c986 100644
+<span class="token deleted">--- a/README.md</span>
+<span class="token inserted">+++ b/README.md</span>
+<span class="token coord">@@ -1,3 +1,7 @@</span>
+ # Getting started with git
+
+<span class="token inserted">+Git might look intimidating to begin with...</span>
+<span class="token inserted">+</span>
+<span class="token inserted">+## How hard is it?</span>
+<span class="token inserted">+</span>
+ It's easy if you take one step at a time.
+(END)
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>You can close the diff viewer by pressing <code>Q</code>.</p></div> <p>Note that git <em>inserted</em> the new lines between the first ones and remember
+the initial lines stay the same.</p> <p>The <code>.gitignore</code> files is not shown here. Changes to it are not tracked yet.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> commit -am <span class="token string">&quot;Add more content to README and ignore temporary files&quot;</span>
+<span class="token punctuation">[</span>master 0a92cb8<span class="token punctuation">]</span> Add <span class="token function">more</span> content to README and ignore temporary files
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">4</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+</code></pre></div><p>Now you have created your first commits let's see how we can share them with
+your colleagues.</p> <p>First create a new repository on GitHub:</p> <p><img src="/iac-basics-workshop/assets/img/new-repository.35c7ed34.png" alt="new repository"></p> <p>Then you can follow the instructions for connecting your local repository.</p> <h2 id="helpful-resources"><a href="#helpful-resources" class="header-anchor">#</a> Helpful resources</h2> <p>If you feel underwhelmed with the content of this intro, check out <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener noreferrer">Learn Git
+Branching<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> and see if you can master the
+later <em>levels</em> of the tutorial. You should already know you way around git to
+get the most out of it.</p> <ul><li><p><a href="https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/" target="_blank" rel="noopener noreferrer">Introduction to version control in Git (~3
+hours)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> Our
+first exercise here covers about the first hour of the course.</p></li> <li><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener noreferrer">Learn Git Branching<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <em>a visual and
+interactive tutorial.</em> Once you have the basics, play through all the levels
+and try not to exceed the number of commands for each exercise.</p></li> <li><p><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener noreferrer">Pro Git<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <em>by Scott Chacon and Ben Straub</em></p></li> <li><p><a href="https://www.toptal.com/developers/gitignore" target="_blank" rel="noopener noreferrer">gitignore.io<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <em>generate
+<code>.gitignore</code> files for your projects.</em> Use this for new projects or when
+creating a git repository out of existing ones.</p></li> <li><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener noreferrer">Mastering
+Markdown<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> a quick
+intro to GitHub Flavoured Markdown</p></li> <li><p><a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer">GitHub Flavored Markdown<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> the complete
+specification.</p></li> <li><p><a href="https://training.github.com/" target="_blank" rel="noopener noreferrer">Git Cheat Sheets<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <em>Reference sheets in
+different languages.</em></p></li></ul> <h2 id="how-to-create-a-sample-tree"><a href="#how-to-create-a-sample-tree" class="header-anchor">#</a> How to create a sample tree</h2> <p>This is an optional task to create a sample object graph in git and later
+exploring it using the <code>git cat-file</code> command.</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">mkdir</span> git-basics
+$ <span class="token builtin class-name">cd</span> git-basics
+$ <span class="token function">git</span> init
+Initialized empty Git repository <span class="token keyword">in</span> /home/<span class="token operator">&lt;</span>username<span class="token operator">&gt;</span>/git-basics/.git/
+
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;version 1&quot;</span> <span class="token operator">&gt;</span> test.txt
+$ <span class="token function">git</span> <span class="token function">add</span> test.txt
+$ <span class="token function">git</span> commit -m <span class="token string">&quot;first commit&quot;</span>
+<span class="token punctuation">[</span>master <span class="token punctuation">(</span>root-commit<span class="token punctuation">)</span> fdf4fc<span class="token punctuation">]</span> first commit
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">1</span> insertion<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+ create mode <span class="token number">100644</span> test.txt
+
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;new file&quot;</span> <span class="token operator">&gt;</span> new.txt
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;version 2&quot;</span> <span class="token operator">&gt;</span> test.txt
+$ <span class="token function">git</span> <span class="token function">add</span> new.txt test.txt
+$ <span class="token function">git</span> commit -m <span class="token string">&quot;second commit&quot;</span>
+<span class="token punctuation">[</span>master cac0ca<span class="token punctuation">]</span> second commit
+ Date: Thu Apr <span class="token number">8</span> <span class="token number">11</span>:50:56 <span class="token number">2021</span> +0200
+ <span class="token number">2</span> files changed, <span class="token number">2</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>, <span class="token number">1</span> deletion<span class="token punctuation">(</span>-<span class="token punctuation">)</span>
+ create mode <span class="token number">100644</span> new.txt
+$ <span class="token function">git</span> branch <span class="token builtin class-name">test</span>
+
+$ <span class="token function">mkdir</span> bak
+$ <span class="token builtin class-name">echo</span> <span class="token string">&quot;version 1&quot;</span> <span class="token operator">&gt;</span> bak/test.txt
+$ <span class="token function">git</span> commit -m <span class="token string">&quot;third commit&quot;</span>
+<span class="token punctuation">[</span>master 1a410e<span class="token punctuation">]</span> third commit
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">1</span> insertion<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+ create mode <span class="token number">100644</span> bak/test.txt
+</code></pre></div><p><img src="/iac-basics-workshop/assets/img/refs-tree.7f8bea2f.png" alt="refs-tree"></p> <p>Now you can start browsing the tree structure like this:</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">git</span> cat-file -p master
+tree 3c4e9cd789d88d8d89c1073707c3585e41b0e614
+parent 324177edbf6d0ae3f12d657302f2627d6347c2c6
+author Clemens Wältken <span class="token operator">&lt;</span>clemens.waltken@microsoft.com<span class="token operator">&gt;</span> <span class="token number">1617876347</span> +0200
+committer Clemens Wältken <span class="token operator">&lt;</span>clemens.waltken@microsoft.com<span class="token operator">&gt;</span> <span class="token number">1617876347</span> +0200
+
+third commit
+$ <span class="token function">git</span> cat-file -p 3c4e9c
+<span class="token punctuation">..</span>.
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/azuredevcollege/iac-basics-workshop/edit/master/challenges/challenge_02.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/iac-basics-workshop/challenges/challenge_01.html" class="prev">
+        Import the repository
+      </a></span> <span class="next"><a href="/iac-basics-workshop/challenges/challenge_03.html">
+        Create and deploy your first ARM Template
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/iac-basics-workshop/assets/js/app.4b7700f7.js" defer></script><script src="/iac-basics-workshop/assets/js/2.4b56f390.js" defer></script><script src="/iac-basics-workshop/assets/js/9.d56bb1c7.js" defer></script>
+  </body>
+</html>
